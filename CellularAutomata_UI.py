@@ -29,6 +29,8 @@ class UI:
 		self.clear_btn.pack(side = LEFT)
 		quit_btn = Button(frame, text = 'Quit', bg = '#CCCCCC', command = self.quit)
 		quit_btn.pack(side = LEFT)
+		self.gol_btn = Button(frame, text = 'Game of Life', bg = '#CCCCCC', command = self.game_of_life)
+		self.gol_btn.pack(side = LEFT)
 
 	def run(self):
 		self.clear_btn.config(state = DISABLED)
@@ -48,6 +50,12 @@ class UI:
 		self.model.clear(self)
 		self.clear_btn.config(text = 'Clear', state = NORMAL)
 		self.run_btn.config(state = NORMAL)
+
+	def game_of_life(self):
+		self.gol_btn.config(state = DISABLED)
+		self.clear_btn.config(state = DISABLED)
+		self.run_btn.config(text = 'Running...', state = DISABLED)
+		self.model.game_of_life(self)
 
 	def quit(self):
 		self.root.destroy()
