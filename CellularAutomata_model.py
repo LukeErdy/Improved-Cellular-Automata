@@ -23,8 +23,8 @@ class Model:
 	def run(self, rule_byte, ui): # rule_byte is a string like '10011010'
 		for y in range(len(self.grid) - 1):
 			for x in range(len(self.grid[y])):
-				if x - 1 < 0: pat = '0%d%d' % (self.grid[y][x], self.grid[y][x + 1])
-				elif x + 1 == len(self.grid[y]): pat = '%d%d0' % (self.grid[y][x - 1], self.grid[y][x])
+				if x - 1 < 0: pat = '%d%d%d' % (self.grid[y][-1], self.grid[y][x], self.grid[y][x + 1])
+				elif x + 1 == len(self.grid[y]): pat = '%d%d%d' % (self.grid[y][x - 1], self.grid[y][x], self.grid[y][0])
 				else: pat = '%d%d%d' % (self.grid[y][x - 1], self.grid[y][x], self.grid[y][x + 1])
 				self.grid[y + 1][x] = int(rule_byte[self.pats.index(pat)])
 				if self.grid[y + 1][x] == 1: ui.canvas.itemconfig(ui.cells[y + 1][x], fill = ui.color)
